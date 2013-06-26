@@ -1,0 +1,17 @@
+{
+  "name": "aeropress",
+  "version": "0.0.1",
+  "main": "./assets",
+  "ignore": [
+    ".jshintrc",
+    "**/*.txt"
+  ],
+  "dependencies": {
+    "<name>": "<version>",
+    "<name>": "<folder>",
+    "<name>": "<package>"
+  },
+  "devDependencies": {
+    "<test-framework-name>": "<version>"
+  }
+}
