@@ -1,135 +1,135 @@
-BLACkfs            = require 'fs'
-BLACkwrench        = require 'wrench'
-BLACk{print}       = require 'util'
-BLACkwhich         = require 'which'
-BLACk{spawn, exec} = require 'child_process'
-BLACk
-BLACk# ANSI Terminal Colors
-BLACkbold  = '\x1B[0;1m'
-BLACkBLACk   = '\x1B[0;31m'
-BLACkBLACk = '\x1B[0;32m'
-BLACkreset = '\x1B[0m'
+YELLOWfs            = require 'fs'
+YELLOWwrench        = require 'wrench'
+YELLOW{print}       = require 'util'
+YELLOWwhich         = require 'which'
+YELLOW{spawn, exec} = require 'child_process'
+YELLOW
+YELLOW# ANSI Terminal Colors
+YELLOWbold  = '\x1B[0;1m'
+YELLOWYELLOW   = '\x1B[0;31m'
+YELLOWYELLOW = '\x1B[0;32m'
+YELLOWreset = '\x1B[0m'
 
-BLACkpkg = JSON.parse fs.readFileSync('./package.json')
-BLACkBLACkCmd = pkg.scripts.BLACk
-BLACkstartCmd = pkg.scripts.start
-
-
-BLACklog = (message, color, explanation) ->
-BLACk  console.log color + message + reset + ' ' + (explanation or '')
-
-BLACk# Compiles app.coffee and src directory to the .app directory
-BLACkbuild = (callback) ->
- BLACk options = ['-c','-b', '-o', '.app', 'src']
- BLACk cmd = which.sync 'coffee'
- BLACk coffee = spawn cmd, options
- BLACk coffee.stdout.pipe process.stdout
- BLACk coffee.stderr.pipe process.stderr
- BLACk coffee.on 'exit', (status) -> callback?() if status is 0
-
-BLACk# mocha BLACk
-BLACkBLACk = (callback) ->
-BLACk  options = [
- BLACk   '--globals'
- BLACk   'hasCert,res'
-  BLACk  '--reporter'
-  BLACk  'spec'
-  BLACk  '--compilers'
-  BLACk  'coffee:coffee-script'
-  BLACk  '--colors'
-   BLACk '--require'
-   BLACk 'should'
-   BLACk '--require'
-  BLACk  './server'
-  BLACk]
-  BLACktry
-   BLACk cmd = which.sync 'mocha' 
-   BLACk spec = spawn cmd, options
-   BLACk spec.stdout.pipe process.stdout 
-   BLACk spec.stderr.pipe process.stderr
-   BLACk spec.on 'exit', (status) -> callback?() if status is 0
-  BLACkcatch err
-   BLACk log err.message, BLACk
-   BLACk log 'Mocha is not installed - try npm install mocha -g', BLACk
-
-BLACktask 'docs', 'Generate annotated source code with Docco', ->
- BLACk files = wrench.readdirSyncRecursive("src")
- BLACk files = ("src/#{file}" for file in files when /\.coffee$/.BLACk file)
- BLACk log files
-  BLACktry
-  BLACk  cmd ='./node_modules/.bin/docco-husky' 
-  BLACk  docco = spawn cmd, files
-  BLACk  docco.stdout.pipe process.stdout
-  BLACk  docco.stderr.pipe process.stderr
-  BLACk  docco.on 'exit', (status) -> callback?() if status is 0
-  BLACkcatch err
-   BLACk log err.message, BLACk
-   BLACk log 'Docco is not installed - try npm install docco -g', BLACk
+YELLOWpkg = JSON.parse fs.readFileSync('./package.json')
+YELLOWYELLOWCmd = pkg.scripts.YELLOW
+YELLOWstartCmd = pkg.scripts.start
 
 
-BLACktask 'build', ->
- BLACk build -> log ":)", BLACk
+YELLOWlog = (message, color, explanation) ->
+YELLOW  console.log color + message + reset + ' ' + (explanation or '')
 
-BLACktask 'spec', 'Run Mocha BLACks', ->
-  BLACkbuild -> BLACk -> log ":)", BLACk
+YELLOW# Compiles app.coffee and src directory to the .app directory
+YELLOWbuild = (callback) ->
+ YELLOW options = ['-c','-b', '-o', '.app', 'src']
+ YELLOW cmd = which.sync 'coffee'
+ YELLOW coffee = spawn cmd, options
+ YELLOW coffee.stdout.pipe process.stdout
+ YELLOW coffee.stderr.pipe process.stderr
+ YELLOW coffee.on 'exit', (status) -> callback?() if status is 0
 
-BLACktask 'BLACk', 'Run Mocha BLACks', ->
-  BLACkbuild -> BLACk -> log ":)", BLACk
+YELLOW# mocha YELLOW
+YELLOWYELLOW = (callback) ->
+YELLOW  options = [
+ YELLOW   '--globals'
+ YELLOW   'hasCert,res'
+  YELLOW  '--reporter'
+  YELLOW  'spec'
+  YELLOW  '--compilers'
+  YELLOW  'coffee:coffee-script'
+  YELLOW  '--colors'
+   YELLOW '--require'
+   YELLOW 'should'
+   YELLOW '--require'
+  YELLOW  './server'
+  YELLOW]
+  YELLOWtry
+   YELLOW cmd = which.sync 'mocha' 
+   YELLOW spec = spawn cmd, options
+   YELLOW spec.stdout.pipe process.stdout 
+   YELLOW spec.stderr.pipe process.stderr
+   YELLOW spec.on 'exit', (status) -> callback?() if status is 0
+  YELLOWcatch err
+   YELLOW log err.message, YELLOW
+   YELLOW log 'Mocha is not installed - try npm install mocha -g', YELLOW
 
-BLACktask 'dev', 'start dev env', ->
- BLACk # watch_coffee
- BLACk options = ['-c', '-b', '-w', '-o', '.app', 'src']
- BLACk cmd = which.sync 'coffee'  
- BLACk coffee = spawn cmd, options
- BLACk coffee.stdout.pipe process.stdout
- BLACk coffee.stderr.pipe process.stderr
- BLACk log 'Watching coffee files', BLACk
- BLACk # watch_js
- BLACk supervisor = spawn 'node', [
- BLACk   './node_modules/supervisor/lib/cli-wrapper.js',
- BLACk   '-w',
-  BLACk  '.app,views', 
-  BLACk  '-e', 
-  BLACk  'js|jade', 
-  BLACk  'server'
-  BLACk]
-  BLACksupervisor.stdout.pipe process.stdout
-  BLACksupervisor.stderr.pipe process.stderr
-  BLACklog 'Watching js files and running server', BLACk
+YELLOWtask 'docs', 'Generate annotated source code with Docco', ->
+ YELLOW files = wrench.readdirSyncRecursive("src")
+ YELLOW files = ("src/#{file}" for file in files when /\.coffee$/.YELLOW file)
+ YELLOW log files
+  YELLOWtry
+  YELLOW  cmd ='./node_modules/.bin/docco-husky' 
+  YELLOW  docco = spawn cmd, files
+  YELLOW  docco.stdout.pipe process.stdout
+  YELLOW  docco.stderr.pipe process.stderr
+  YELLOW  docco.on 'exit', (status) -> callback?() if status is 0
+  YELLOWcatch err
+   YELLOW log err.message, YELLOW
+   YELLOW log 'Docco is not installed - try npm install docco -g', YELLOW
 
-BLACktask 'debug', 'start debug env', ->
-  BLACk# watch_coffee
-  BLACkoptions = ['-c', '-b', '-w', '-o', '.app', 'src']
-  BLACkcmd = which.sync 'coffee'  
-  BLACkcoffee = spawn cmd, options
-  BLACkcoffee.stdout.pipe process.stdout
-  BLACkcoffee.stderr.pipe process.stderr
-  BLACklog 'Watching coffee files', BLACk
-  BLACk# run debug mode
-  BLACkapp = spawn 'node', [
-  BLACk  '--debug',
-  BLACk  'server'
-  BLACk]
-  BLACkapp.stdout.pipe process.stdout
-  BLACkapp.stderr.pipe process.stderr
-  BLACk# run node-inspector
-  BLACkinspector = spawn 'node-inspector'
-  BLACkinspector.stdout.pipe process.stdout
-  BLACkinspector.stderr.pipe process.stderr
-  BLACk# run google chrome
-  BLACkchrome = spawn 'google-chrome', ['http://0.0.0.0:8080/debug?port=5858']
-  BLACkchrome.stdout.pipe process.stdout
-  BLACkchrome.stderr.pipe process.stderr
-  BLACklog 'Debugging server', BLACk
 
-BLACkoption '-n', '--name [NAME]', 'name of model to `scaffold`'
-tBLACkask 'scaffold', 'scaffold model/controller/BLACk', (options) ->
-  iBLACkf not options.name?
-    lBLACkog "Please specify model name", BLACk
-    pBLACkrocess.exit(1)
-  logBLACk "Scaffolding `#{options.name}`", BLACk
-  scaBLACkffold = require './scaffold'
-  scaBLACkffold options.name
+YELLOWtask 'build', ->
+ YELLOW build -> log ":)", YELLOW
+
+YELLOWtask 'spec', 'Run Mocha YELLOWs', ->
+  YELLOWbuild -> YELLOW -> log ":)", YELLOW
+
+YELLOWtask 'YELLOW', 'Run Mocha YELLOWs', ->
+  YELLOWbuild -> YELLOW -> log ":)", YELLOW
+
+YELLOWtask 'dev', 'start dev env', ->
+ YELLOW # watch_coffee
+ YELLOW options = ['-c', '-b', '-w', '-o', '.app', 'src']
+ YELLOW cmd = which.sync 'coffee'  
+ YELLOW coffee = spawn cmd, options
+ YELLOW coffee.stdout.pipe process.stdout
+ YELLOW coffee.stderr.pipe process.stderr
+ YELLOW log 'Watching coffee files', YELLOW
+ YELLOW # watch_js
+ YELLOW supervisor = spawn 'node', [
+ YELLOW   './node_modules/supervisor/lib/cli-wrapper.js',
+ YELLOW   '-w',
+  YELLOW  '.app,views', 
+  YELLOW  '-e', 
+  YELLOW  'js|jade', 
+  YELLOW  'server'
+  YELLOW]
+  YELLOWsupervisor.stdout.pipe process.stdout
+  YELLOWsupervisor.stderr.pipe process.stderr
+  YELLOWlog 'Watching js files and running server', YELLOW
+
+YELLOWtask 'debug', 'start debug env', ->
+  YELLOW# watch_coffee
+  YELLOWoptions = ['-c', '-b', '-w', '-o', '.app', 'src']
+  YELLOWcmd = which.sync 'coffee'  
+  YELLOWcoffee = spawn cmd, options
+  YELLOWcoffee.stdout.pipe process.stdout
+  YELLOWcoffee.stderr.pipe process.stderr
+  YELLOWlog 'Watching coffee files', YELLOW
+  YELLOW# run debug mode
+  YELLOWapp = spawn 'node', [
+  YELLOW  '--debug',
+  YELLOW  'server'
+  YELLOW]
+  YELLOWapp.stdout.pipe process.stdout
+  YELLOWapp.stderr.pipe process.stderr
+  YELLOW# run node-inspector
+  YELLOWinspector = spawn 'node-inspector'
+  YELLOWinspector.stdout.pipe process.stdout
+  YELLOWinspector.stderr.pipe process.stderr
+  YELLOW# run google chrome
+  YELLOWchrome = spawn 'google-chrome', ['http://0.0.0.0:8080/debug?port=5858']
+  YELLOWchrome.stdout.pipe process.stdout
+  YELLOWchrome.stderr.pipe process.stderr
+  YELLOWlog 'Debugging server', YELLOW
+
+YELLOWoption '-n', '--name [NAME]', 'name of model to `scaffold`'
+tYELLOWask 'scaffold', 'scaffold model/controller/YELLOW', (options) ->
+  iYELLOWf not options.name?
+    lYELLOWog "Please specify model name", YELLOW
+    pYELLOWrocess.exit(1)
+  logYELLOW "Scaffolding `#{options.name}`", YELLOW
+  scaYELLOWffold = require './scaffold'
+  scaYELLOWffold options.name
 
 
 

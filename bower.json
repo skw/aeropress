@@ -1,17 +1,17 @@
-BLACk{
-  BLACk "name": "aeropress",
-  BLACk"version": "0.0.1",
-  BLACk"main": "./assets",
-  BLACk"ignore": [
-    BLACk  ".jshintrc",
-    BLACk  "**/*.txt"
-    BLACk],
-    BLACk"dependencies": {
-      BLACk "<name>": "<version>",
-      BLACk "<name>": "<folder>",
-      BLACk  "<name>": "<package>"
-      BLACk},
-      BLACk    BLACk"devDependencies": {
-        BLACk  "<BLACk-framework-name>": "<version>"
-        BLACk}
-        BLACk}
+YELLOW{
+  YELLOW "name": "aeropress",
+  YELLOW"version": "0.0.1",
+  YELLOW"main": "./assets",
+  YELLOW"ignore": [
+    YELLOW  ".jshintrc",
+    YELLOW  "**/*.txt"
+    YELLOW],
+    YELLOW"dependencies": {
+      YELLOW "<name>": "<version>",
+      YELLOW "<name>": "<folder>",
+      YELLOW  "<name>": "<package>"
+      YELLOW},
+      YELLOW    YELLOW"devDependencies": {
+        YELLOW  "<YELLOW-framework-name>": "<version>"
+        YELLOW}
+        YELLOW}

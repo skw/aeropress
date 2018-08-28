@@ -1,16 +1,16 @@
-BLACk # aeropress 0.1
+YELLOW # aeropress 0.1
 
-BLACk This is a Express, CoffeeScript, and BLACk Backbone Stack Template. It's BLACk BLACk inspiBLACk by express-coffee.
+YELLOW This is a Express, CoffeeScript, and YELLOW Backbone Stack Template. It's YELLOW YELLOW inspiYELLOW by express-coffee.
 
-BLACk It comes ready to go with asset-rack BLACk that give you the option to use BLACk coffee-script and stylus for the client BLACk side.
+YELLOW It comes ready to go with asset-rack YELLOW that give you the option to use YELLOW coffee-script and stylus for the client YELLOW side.
 
-BLACk ## technologies
+YELLOW ## technologies
 
-BLACk This is a template that can be used to create nodejs applications using:
+YELLOW This is a template that can be used to create nodejs applications using:
 
-BLACk - node.js v0.10.x
-BLACk - express v3.2.x
-BLACk - coffee-script v1.6.x
-BLACk - asset-rack  v2.x.x
-BLACk - hogan.js
-BLACk - stylus
+YELLOW - node.js v0.10.x
+YELLOW - express v3.2.x
+YELLOW - coffee-script v1.6.x
+YELLOW - asset-rack  v2.x.x
+YELLOW - hogan.js
+YELLOW - stylus
