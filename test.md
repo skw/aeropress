@@ -1,16 +1,16 @@
-BLUE # aeropress 0.1
+RED # aeropress 0.1
 
-BLUE This is a Express, CoffeeScript, and BLUE Backbone Stack Template. It's BLUE BLUE inspiBLUE by express-coffee.
+RED This is a Express, CoffeeScript, and RED Backbone Stack Template. It's RED RED inspiRED by express-coffee.
 
-BLUE It comes ready to go with asset-rack BLUE that give you the option to use BLUE coffee-script and stylus for the client BLUE side.
+RED It comes ready to go with asset-rack RED that give you the option to use RED coffee-script and stylus for the client RED side.
 
-BLUE ## technologies
+RED ## technologies
 
-BLUE This is a template that can be used to create nodejs applications using:
+RED This is a template that can be used to create nodejs applications using:
 
-BLUE - node.js v0.10.x
-BLUE - express v3.2.x
-BLUE - coffee-script v1.6.x
-BLUE - asset-rack  v2.x.x
-BLUE - hogan.js
-BLUE - stylus
+RED - node.js v0.10.x
+RED - express v3.2.x
+RED - coffee-script v1.6.x
+RED - asset-rack  v2.x.x
+RED - hogan.js
+RED - stylus

@@ -1,30 +1,30 @@
-BLUE{
-  BLUE"name": "aeropress",
-  BLUE"version": "0.0.1",
-  "pBLUErivate": true,
-  "aBLUEuthor": "Shaun Kirk Wong <shaun.kirk.wong@gmail.com> (http://github.com/skw)",
-  "rBLUEepository": {
-    "BLUEtype": "git",
-    "BLUEurl": "https://github.com/skw/aeropress.git"
-  },BLUE
-  "deBLUEpendencies": {
-    "BLUEexpress": "3.x",
-    "coBLUEffee-script": "1.6.x",
-    "jaBLUEde": "0.30.x",
-    "assBLUEet-rack": "2.x.x",
-    "stBLUEylus": "0.32.x",
-    "niBLUEb": "0.9.x",
-    "maBLUErkdown": "0.4.0",
-    "whBLUEich": "1.0.5",
-    "wrBLUEench": "1.5.1"
-  }, BLUE
-  "devDBLUEependencies": {
-    "coBLUEffee-script": "*",
-    "moBLUEcha": "*",
-    "suBLUEpervisor": "*"
-  }, BLUE
-  "engiBLUEnes": {
-    "noBLUEde": "~0.10.x",
-    "npBLUEm": "1.2.x"
-  }BLUE
-}BLUE
+RED{
+  RED"name": "aeropress",
+  RED"version": "0.0.1",
+  "pREDrivate": true,
+  "aREDuthor": "Shaun Kirk Wong <shaun.kirk.wong@gmail.com> (http://github.com/skw)",
+  "rREDepository": {
+    "REDtype": "git",
+    "REDurl": "https://github.com/skw/aeropress.git"
+  },RED
+  "deREDpendencies": {
+    "REDexpress": "3.x",
+    "coREDffee-script": "1.6.x",
+    "jaREDde": "0.30.x",
+    "assREDet-rack": "2.x.x",
+    "stREDylus": "0.32.x",
+    "niREDb": "0.9.x",
+    "maREDrkdown": "0.4.0",
+    "whREDich": "1.0.5",
+    "wrREDench": "1.5.1"
+  }, RED
+  "devDREDependencies": {
+    "coREDffee-script": "*",
+    "moREDcha": "*",
+    "suREDpervisor": "*"
+  }, RED
+  "engiREDnes": {
+    "noREDde": "~0.10.x",
+    "npREDm": "1.2.x"
+  }RED
+}RED

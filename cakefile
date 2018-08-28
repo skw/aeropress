@@ -1,135 +1,135 @@
-BLUEfs            = require 'fs'
-BLUEwrench        = require 'wrench'
-BLUE{print}       = require 'util'
-BLUEwhich         = require 'which'
-BLUE{spawn, exec} = require 'child_process'
-BLUE
-BLUE# ANSI Terminal Colors
-BLUEbold  = '\x1B[0;1m'
-BLUEBLUE   = '\x1B[0;31m'
-BLUEBLUE = '\x1B[0;32m'
-BLUEreset = '\x1B[0m'
+REDfs            = require 'fs'
+REDwrench        = require 'wrench'
+RED{print}       = require 'util'
+REDwhich         = require 'which'
+RED{spawn, exec} = require 'child_process'
+RED
+RED# ANSI Terminal Colors
+REDbold  = '\x1B[0;1m'
+REDRED   = '\x1B[0;31m'
+REDRED = '\x1B[0;32m'
+REDreset = '\x1B[0m'
 
-BLUEpkg = JSON.parse fs.readFileSync('./package.json')
-BLUEBLUECmd = pkg.scripts.BLUE
-BLUEstartCmd = pkg.scripts.start
-
-
-BLUElog = (message, color, explanation) ->
-BLUE  console.log color + message + reset + ' ' + (explanation or '')
-
-BLUE# Compiles app.coffee and src directory to the .app directory
-BLUEbuild = (callback) ->
- BLUE options = ['-c','-b', '-o', '.app', 'src']
- BLUE cmd = which.sync 'coffee'
- BLUE coffee = spawn cmd, options
- BLUE coffee.stdout.pipe process.stdout
- BLUE coffee.stderr.pipe process.stderr
- BLUE coffee.on 'exit', (status) -> callback?() if status is 0
-
-BLUE# mocha BLUE
-BLUEBLUE = (callback) ->
-BLUE  options = [
- BLUE   '--globals'
- BLUE   'hasCert,res'
-  BLUE  '--reporter'
-  BLUE  'spec'
-  BLUE  '--compilers'
-  BLUE  'coffee:coffee-script'
-  BLUE  '--colors'
-   BLUE '--require'
-   BLUE 'should'
-   BLUE '--require'
-  BLUE  './server'
-  BLUE]
-  BLUEtry
-   BLUE cmd = which.sync 'mocha' 
-   BLUE spec = spawn cmd, options
-   BLUE spec.stdout.pipe process.stdout 
-   BLUE spec.stderr.pipe process.stderr
-   BLUE spec.on 'exit', (status) -> callback?() if status is 0
-  BLUEcatch err
-   BLUE log err.message, BLUE
-   BLUE log 'Mocha is not installed - try npm install mocha -g', BLUE
-
-BLUEtask 'docs', 'Generate annotated source code with Docco', ->
- BLUE files = wrench.readdirSyncRecursive("src")
- BLUE files = ("src/#{file}" for file in files when /\.coffee$/.BLUE file)
- BLUE log files
-  BLUEtry
-  BLUE  cmd ='./node_modules/.bin/docco-husky' 
-  BLUE  docco = spawn cmd, files
-  BLUE  docco.stdout.pipe process.stdout
-  BLUE  docco.stderr.pipe process.stderr
-  BLUE  docco.on 'exit', (status) -> callback?() if status is 0
-  BLUEcatch err
-   BLUE log err.message, BLUE
-   BLUE log 'Docco is not installed - try npm install docco -g', BLUE
+REDpkg = JSON.parse fs.readFileSync('./package.json')
+REDREDCmd = pkg.scripts.RED
+REDstartCmd = pkg.scripts.start
 
 
-BLUEtask 'build', ->
- BLUE build -> log ":)", BLUE
+REDlog = (message, color, explanation) ->
+RED  console.log color + message + reset + ' ' + (explanation or '')
 
-BLUEtask 'spec', 'Run Mocha BLUEs', ->
-  BLUEbuild -> BLUE -> log ":)", BLUE
+RED# Compiles app.coffee and src directory to the .app directory
+REDbuild = (callback) ->
+ RED options = ['-c','-b', '-o', '.app', 'src']
+ RED cmd = which.sync 'coffee'
+ RED coffee = spawn cmd, options
+ RED coffee.stdout.pipe process.stdout
+ RED coffee.stderr.pipe process.stderr
+ RED coffee.on 'exit', (status) -> callback?() if status is 0
 
-BLUEtask 'BLUE', 'Run Mocha BLUEs', ->
-  BLUEbuild -> BLUE -> log ":)", BLUE
+RED# mocha RED
+REDRED = (callback) ->
+RED  options = [
+ RED   '--globals'
+ RED   'hasCert,res'
+  RED  '--reporter'
+  RED  'spec'
+  RED  '--compilers'
+  RED  'coffee:coffee-script'
+  RED  '--colors'
+   RED '--require'
+   RED 'should'
+   RED '--require'
+  RED  './server'
+  RED]
+  REDtry
+   RED cmd = which.sync 'mocha' 
+   RED spec = spawn cmd, options
+   RED spec.stdout.pipe process.stdout 
+   RED spec.stderr.pipe process.stderr
+   RED spec.on 'exit', (status) -> callback?() if status is 0
+  REDcatch err
+   RED log err.message, RED
+   RED log 'Mocha is not installed - try npm install mocha -g', RED
 
-BLUEtask 'dev', 'start dev env', ->
- BLUE # watch_coffee
- BLUE options = ['-c', '-b', '-w', '-o', '.app', 'src']
- BLUE cmd = which.sync 'coffee'  
- BLUE coffee = spawn cmd, options
- BLUE coffee.stdout.pipe process.stdout
- BLUE coffee.stderr.pipe process.stderr
- BLUE log 'Watching coffee files', BLUE
- BLUE # watch_js
- BLUE supervisor = spawn 'node', [
- BLUE   './node_modules/supervisor/lib/cli-wrapper.js',
- BLUE   '-w',
-  BLUE  '.app,views', 
-  BLUE  '-e', 
-  BLUE  'js|jade', 
-  BLUE  'server'
-  BLUE]
-  BLUEsupervisor.stdout.pipe process.stdout
-  BLUEsupervisor.stderr.pipe process.stderr
-  BLUElog 'Watching js files and running server', BLUE
+REDtask 'docs', 'Generate annotated source code with Docco', ->
+ RED files = wrench.readdirSyncRecursive("src")
+ RED files = ("src/#{file}" for file in files when /\.coffee$/.RED file)
+ RED log files
+  REDtry
+  RED  cmd ='./node_modules/.bin/docco-husky' 
+  RED  docco = spawn cmd, files
+  RED  docco.stdout.pipe process.stdout
+  RED  docco.stderr.pipe process.stderr
+  RED  docco.on 'exit', (status) -> callback?() if status is 0
+  REDcatch err
+   RED log err.message, RED
+   RED log 'Docco is not installed - try npm install docco -g', RED
 
-BLUEtask 'debug', 'start debug env', ->
-  BLUE# watch_coffee
-  BLUEoptions = ['-c', '-b', '-w', '-o', '.app', 'src']
-  BLUEcmd = which.sync 'coffee'  
-  BLUEcoffee = spawn cmd, options
-  BLUEcoffee.stdout.pipe process.stdout
-  BLUEcoffee.stderr.pipe process.stderr
-  BLUElog 'Watching coffee files', BLUE
-  BLUE# run debug mode
-  BLUEapp = spawn 'node', [
-  BLUE  '--debug',
-  BLUE  'server'
-  BLUE]
-  BLUEapp.stdout.pipe process.stdout
-  BLUEapp.stderr.pipe process.stderr
-  BLUE# run node-inspector
-  BLUEinspector = spawn 'node-inspector'
-  BLUEinspector.stdout.pipe process.stdout
-  BLUEinspector.stderr.pipe process.stderr
-  BLUE# run google chrome
-  BLUEchrome = spawn 'google-chrome', ['http://0.0.0.0:8080/debug?port=5858']
-  BLUEchrome.stdout.pipe process.stdout
-  BLUEchrome.stderr.pipe process.stderr
-  BLUElog 'Debugging server', BLUE
 
-BLUEoption '-n', '--name [NAME]', 'name of model to `scaffold`'
-tBLUEask 'scaffold', 'scaffold model/controller/BLUE', (options) ->
-  iBLUEf not options.name?
-    lBLUEog "Please specify model name", BLUE
-    pBLUErocess.exit(1)
-  logBLUE "Scaffolding `#{options.name}`", BLUE
-  scaBLUEffold = require './scaffold'
-  scaBLUEffold options.name
+REDtask 'build', ->
+ RED build -> log ":)", RED
+
+REDtask 'spec', 'Run Mocha REDs', ->
+  REDbuild -> RED -> log ":)", RED
+
+REDtask 'RED', 'Run Mocha REDs', ->
+  REDbuild -> RED -> log ":)", RED
+
+REDtask 'dev', 'start dev env', ->
+ RED # watch_coffee
+ RED options = ['-c', '-b', '-w', '-o', '.app', 'src']
+ RED cmd = which.sync 'coffee'  
+ RED coffee = spawn cmd, options
+ RED coffee.stdout.pipe process.stdout
+ RED coffee.stderr.pipe process.stderr
+ RED log 'Watching coffee files', RED
+ RED # watch_js
+ RED supervisor = spawn 'node', [
+ RED   './node_modules/supervisor/lib/cli-wrapper.js',
+ RED   '-w',
+  RED  '.app,views', 
+  RED  '-e', 
+  RED  'js|jade', 
+  RED  'server'
+  RED]
+  REDsupervisor.stdout.pipe process.stdout
+  REDsupervisor.stderr.pipe process.stderr
+  REDlog 'Watching js files and running server', RED
+
+REDtask 'debug', 'start debug env', ->
+  RED# watch_coffee
+  REDoptions = ['-c', '-b', '-w', '-o', '.app', 'src']
+  REDcmd = which.sync 'coffee'  
+  REDcoffee = spawn cmd, options
+  REDcoffee.stdout.pipe process.stdout
+  REDcoffee.stderr.pipe process.stderr
+  REDlog 'Watching coffee files', RED
+  RED# run debug mode
+  REDapp = spawn 'node', [
+  RED  '--debug',
+  RED  'server'
+  RED]
+  REDapp.stdout.pipe process.stdout
+  REDapp.stderr.pipe process.stderr
+  RED# run node-inspector
+  REDinspector = spawn 'node-inspector'
+  REDinspector.stdout.pipe process.stdout
+  REDinspector.stderr.pipe process.stderr
+  RED# run google chrome
+  REDchrome = spawn 'google-chrome', ['http://0.0.0.0:8080/debug?port=5858']
+  REDchrome.stdout.pipe process.stdout
+  REDchrome.stderr.pipe process.stderr
+  REDlog 'Debugging server', RED
+
+REDoption '-n', '--name [NAME]', 'name of model to `scaffold`'
+tREDask 'scaffold', 'scaffold model/controller/RED', (options) ->
+  iREDf not options.name?
+    lREDog "Please specify model name", RED
+    pREDrocess.exit(1)
+  logRED "Scaffolding `#{options.name}`", RED
+  scaREDffold = require './scaffold'
+  scaREDffold options.name
 
 
 

@@ -1,4 +1,4 @@
-BLUE{
-  BLUE  "directory": "bower_components",
-  BLUE  "json": "bower.json"
-  BLUE}
+RED{
+  RED  "directory": "bower_components",
+  RED  "json": "bower.json"
+  RED}
