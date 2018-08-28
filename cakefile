@@ -1,135 +1,135 @@
-fs            = require 'fs'
-wrench        = require 'wrench'
-{print}       = require 'util'
-which         = require 'which'
-{spawn, exec} = require 'child_process'
+TESTfs            = require 'fs'
+TESTwrench        = require 'wrench'
+TEST{print}       = require 'util'
+TESTwhich         = require 'which'
+TEST{spawn, exec} = require 'child_process'
+TEST
+TEST# ANSI Terminal Colors
+TESTbold  = '\x1B[0;1m'
+TESTGREEN   = '\x1B[0;31m'
+TESTgreen = '\x1B[0;32m'
+TESTreset = '\x1B[0m'
 
-# ANSI Terminal Colors
-bold  = '\x1B[0;1m'
-GREEN   = '\x1B[0;31m'
-green = '\x1B[0;32m'
-reset = '\x1B[0m'
-
-pkg = JSON.parse fs.readFileSync('./package.json')
-testCmd = pkg.scripts.test
-startCmd = pkg.scripts.start
-
-
-log = (message, color, explanation) ->
-  console.log color + message + reset + ' ' + (explanation or '')
-
-# Compiles app.coffee and src directory to the .app directory
-build = (callback) ->
-  options = ['-c','-b', '-o', '.app', 'src']
-  cmd = which.sync 'coffee'
-  coffee = spawn cmd, options
-  coffee.stdout.pipe process.stdout
-  coffee.stderr.pipe process.stderr
-  coffee.on 'exit', (status) -> callback?() if status is 0
-
-# mocha test
-test = (callback) ->
-  options = [
-    '--globals'
-    'hasCert,res'
-    '--reporter'
-    'spec'
-    '--compilers'
-    'coffee:coffee-script'
-    '--colors'
-    '--require'
-    'should'
-    '--require'
-    './server'
-  ]
-  try
-    cmd = which.sync 'mocha' 
-    spec = spawn cmd, options
-    spec.stdout.pipe process.stdout 
-    spec.stderr.pipe process.stderr
-    spec.on 'exit', (status) -> callback?() if status is 0
-  catch err
-    log err.message, GREEN
-    log 'Mocha is not installed - try npm install mocha -g', GREEN
-
-task 'docs', 'Generate annotated source code with Docco', ->
-  files = wrench.readdirSyncRecursive("src")
-  files = ("src/#{file}" for file in files when /\.coffee$/.test file)
-  log files
-  try
-    cmd ='./node_modules/.bin/docco-husky' 
-    docco = spawn cmd, files
-    docco.stdout.pipe process.stdout
-    docco.stderr.pipe process.stderr
-    docco.on 'exit', (status) -> callback?() if status is 0
-  catch err
-    log err.message, GREEN
-    log 'Docco is not installed - try npm install docco -g', GREEN
+TESTpkg = JSON.parse fs.readFileSync('./package.json')
+TESTtestCmd = pkg.scripts.test
+TESTstartCmd = pkg.scripts.start
 
 
-task 'build', ->
-  build -> log ":)", green
+TESTlog = (message, color, explanation) ->
+TEST  console.log color + message + reset + ' ' + (explanation or '')
 
-task 'spec', 'Run Mocha tests', ->
-  build -> test -> log ":)", green
+TEST# Compiles app.coffee and src directory to the .app directory
+TESTbuild = (callback) ->
+ TEST options = ['-c','-b', '-o', '.app', 'src']
+ TEST cmd = which.sync 'coffee'
+ TEST coffee = spawn cmd, options
+ TEST coffee.stdout.pipe process.stdout
+ TEST coffee.stderr.pipe process.stderr
+ TEST coffee.on 'exit', (status) -> callback?() if status is 0
 
-task 'test', 'Run Mocha tests', ->
-  build -> test -> log ":)", green
+TEST# mocha test
+TESTtest = (callback) ->
+TEST  options = [
+ TEST   '--globals'
+ TEST   'hasCert,res'
+  TEST  '--reporter'
+  TEST  'spec'
+  TEST  '--compilers'
+  TEST  'coffee:coffee-script'
+  TEST  '--colors'
+   TEST '--require'
+   TEST 'should'
+   TEST '--require'
+  TEST  './server'
+  TEST]
+  TESTtry
+   TEST cmd = which.sync 'mocha' 
+   TEST spec = spawn cmd, options
+   TEST spec.stdout.pipe process.stdout 
+   TEST spec.stderr.pipe process.stderr
+   TEST spec.on 'exit', (status) -> callback?() if status is 0
+  TESTcatch err
+   TEST log err.message, GREEN
+   TEST log 'Mocha is not installed - try npm install mocha -g', GREEN
 
-task 'dev', 'start dev env', ->
-  # watch_coffee
-  options = ['-c', '-b', '-w', '-o', '.app', 'src']
-  cmd = which.sync 'coffee'  
-  coffee = spawn cmd, options
-  coffee.stdout.pipe process.stdout
-  coffee.stderr.pipe process.stderr
-  log 'Watching coffee files', green
-  # watch_js
-  supervisor = spawn 'node', [
-    './node_modules/supervisor/lib/cli-wrapper.js',
-    '-w',
-    '.app,views', 
-    '-e', 
-    'js|jade', 
-    'server'
-  ]
-  supervisor.stdout.pipe process.stdout
-  supervisor.stderr.pipe process.stderr
-  log 'Watching js files and running server', green
+TESTtask 'docs', 'Generate annotated source code with Docco', ->
+ TEST files = wrench.readdirSyncRecursive("src")
+ TEST files = ("src/#{file}" for file in files when /\.coffee$/.test file)
+ TEST log files
+  TESTtry
+  TEST  cmd ='./node_modules/.bin/docco-husky' 
+  TEST  docco = spawn cmd, files
+  TEST  docco.stdout.pipe process.stdout
+  TEST  docco.stderr.pipe process.stderr
+  TEST  docco.on 'exit', (status) -> callback?() if status is 0
+  TESTcatch err
+   TEST log err.message, GREEN
+   TEST log 'Docco is not installed - try npm install docco -g', GREEN
 
-task 'debug', 'start debug env', ->
-  # watch_coffee
-  options = ['-c', '-b', '-w', '-o', '.app', 'src']
-  cmd = which.sync 'coffee'  
-  coffee = spawn cmd, options
-  coffee.stdout.pipe process.stdout
-  coffee.stderr.pipe process.stderr
-  log 'Watching coffee files', green
-  # run debug mode
-  app = spawn 'node', [
-    '--debug',
-    'server'
-  ]
-  app.stdout.pipe process.stdout
-  app.stderr.pipe process.stderr
-  # run node-inspector
-  inspector = spawn 'node-inspector'
-  inspector.stdout.pipe process.stdout
-  inspector.stderr.pipe process.stderr
-  # run google chrome
-  chrome = spawn 'google-chrome', ['http://0.0.0.0:8080/debug?port=5858']
-  chrome.stdout.pipe process.stdout
-  chrome.stderr.pipe process.stderr
-  log 'Debugging server', green
 
-option '-n', '--name [NAME]', 'name of model to `scaffold`'
-task 'scaffold', 'scaffold model/controller/test', (options) ->
-  if not options.name?
-    log "Please specify model name", GREEN
-    process.exit(1)
-  log "Scaffolding `#{options.name}`", green
-  scaffold = require './scaffold'
-  scaffold options.name
+TESTtask 'build', ->
+ TEST build -> log ":)", green
+
+TESTtask 'spec', 'Run Mocha tests', ->
+  TESTbuild -> test -> log ":)", green
+
+TESTtask 'test', 'Run Mocha tests', ->
+  TESTbuild -> test -> log ":)", green
+
+TESTtask 'dev', 'start dev env', ->
+ TEST # watch_coffee
+ TEST options = ['-c', '-b', '-w', '-o', '.app', 'src']
+ TEST cmd = which.sync 'coffee'  
+ TEST coffee = spawn cmd, options
+ TEST coffee.stdout.pipe process.stdout
+ TEST coffee.stderr.pipe process.stderr
+ TEST log 'Watching coffee files', green
+ TEST # watch_js
+ TEST supervisor = spawn 'node', [
+ TEST   './node_modules/supervisor/lib/cli-wrapper.js',
+ TEST   '-w',
+  TEST  '.app,views', 
+  TEST  '-e', 
+  TEST  'js|jade', 
+  TEST  'server'
+  TEST]
+  TESTsupervisor.stdout.pipe process.stdout
+  TESTsupervisor.stderr.pipe process.stderr
+  TESTlog 'Watching js files and running server', green
+
+TESTtask 'debug', 'start debug env', ->
+  TEST# watch_coffee
+  TESToptions = ['-c', '-b', '-w', '-o', '.app', 'src']
+  TESTcmd = which.sync 'coffee'  
+  TESTcoffee = spawn cmd, options
+  TESTcoffee.stdout.pipe process.stdout
+  TESTcoffee.stderr.pipe process.stderr
+  TESTlog 'Watching coffee files', green
+  TEST# run debug mode
+  TESTapp = spawn 'node', [
+  TEST  '--debug',
+  TEST  'server'
+  TEST]
+  TESTapp.stdout.pipe process.stdout
+  TESTapp.stderr.pipe process.stderr
+  TEST# run node-inspector
+  TESTinspector = spawn 'node-inspector'
+  TESTinspector.stdout.pipe process.stdout
+  TESTinspector.stderr.pipe process.stderr
+  TEST# run google chrome
+  TESTchrome = spawn 'google-chrome', ['http://0.0.0.0:8080/debug?port=5858']
+  TESTchrome.stdout.pipe process.stdout
+  TESTchrome.stderr.pipe process.stderr
+  TESTlog 'Debugging server', green
+
+TESToption '-n', '--name [NAME]', 'name of model to `scaffold`'
+tTESTask 'scaffold', 'scaffold model/controller/test', (options) ->
+  iTESTf not options.name?
+    lTESTog "Please specify model name", GREEN
+    pTESTrocess.exit(1)
+  logTEST "Scaffolding `#{options.name}`", green
+  scaTESTffold = require './scaffold'
+  scaTESTffold options.name
 
 
 

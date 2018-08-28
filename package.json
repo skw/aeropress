@@ -1,30 +1,30 @@
-{
-  "name": "aeropress",
-  "version": "0.0.1",
-  "private": true,
-  "author": "Shaun Kirk Wong <shaun.kirk.wong@gmail.com> (http://github.com/skw)",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/skw/aeropress.git"
-  },
-  "dependencies": {
-    "express": "3.x",
-    "coffee-script": "1.6.x",
-    "jade": "0.30.x",
-    "asset-rack": "2.x.x",
-    "stylus": "0.32.x",
-    "nib": "0.9.x",
-    "markdown": "0.4.0",
-    "which": "1.0.5",
-    "wrench": "1.5.1"
-  }, 
-  "devDependencies": {
-    "coffee-script": "*",
-    "mocha": "*",
-    "supervisor": "*"
-  }, 
-  "engines": {
-    "node": "~0.10.x",
-    "npm": "1.2.x"
-  }
-}
+TEST{
+  TEST"name": "aeropress",
+  TEST"version": "0.0.1",
+  "pTESTrivate": true,
+  "aTESTuthor": "Shaun Kirk Wong <shaun.kirk.wong@gmail.com> (http://github.com/skw)",
+  "rTESTepository": {
+    "TESTtype": "git",
+    "TESTurl": "https://github.com/skw/aeropress.git"
+  },TEST
+  "deTESTpendencies": {
+    "TESTexpress": "3.x",
+    "coTESTffee-script": "1.6.x",
+    "jaTESTde": "0.30.x",
+    "assTESTet-rack": "2.x.x",
+    "stTESTylus": "0.32.x",
+    "niTESTb": "0.9.x",
+    "maTESTrkdown": "0.4.0",
+    "whTESTich": "1.0.5",
+    "wrTESTench": "1.5.1"
+  }, TEST
+  "devDTESTependencies": {
+    "coTESTffee-script": "*",
+    "moTESTcha": "*",
+    "suTESTpervisor": "*"
+  }, TEST
+  "engiTESTnes": {
+    "noTESTde": "~0.10.x",
+    "npTESTm": "1.2.x"
+  }TEST
+}TEST
