@@ -6,7 +6,7 @@ which         = require 'which'
 
 # ANSI Terminal Colors
 bold  = '\x1B[0;1m'
-red   = '\x1B[0;31m'
+GREEN   = '\x1B[0;31m'
 green = '\x1B[0;32m'
 reset = '\x1B[0m'
 
@@ -49,8 +49,8 @@ test = (callback) ->
     spec.stderr.pipe process.stderr
     spec.on 'exit', (status) -> callback?() if status is 0
   catch err
-    log err.message, red
-    log 'Mocha is not installed - try npm install mocha -g', red
+    log err.message, GREEN
+    log 'Mocha is not installed - try npm install mocha -g', GREEN
 
 task 'docs', 'Generate annotated source code with Docco', ->
   files = wrench.readdirSyncRecursive("src")
@@ -63,8 +63,8 @@ task 'docs', 'Generate annotated source code with Docco', ->
     docco.stderr.pipe process.stderr
     docco.on 'exit', (status) -> callback?() if status is 0
   catch err
-    log err.message, red
-    log 'Docco is not installed - try npm install docco -g', red
+    log err.message, GREEN
+    log 'Docco is not installed - try npm install docco -g', GREEN
 
 
 task 'build', ->
@@ -125,7 +125,7 @@ task 'debug', 'start debug env', ->
 option '-n', '--name [NAME]', 'name of model to `scaffold`'
 task 'scaffold', 'scaffold model/controller/test', (options) ->
   if not options.name?
-    log "Please specify model name", red
+    log "Please specify model name", GREEN
     process.exit(1)
   log "Scaffolding `#{options.name}`", green
   scaffold = require './scaffold'
