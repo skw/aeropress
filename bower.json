@@ -1,17 +1,17 @@
-ORANGE{
-  ORANGE "name": "aeropress",
-  ORANGE"version": "0.0.1",
-  ORANGE"main": "./assets",
-  ORANGE"ignore": [
-    ORANGE  ".jshintrc",
-    ORANGE  "**/*.txt"
-    ORANGE],
-    ORANGE"dependencies": {
-      ORANGE "<name>": "<version>",
-      ORANGE "<name>": "<folder>",
-      ORANGE  "<name>": "<package>"
-      ORANGE},
-      ORANGE    ORANGE"devDependencies": {
-        ORANGE  "<ORANGE-framework-name>": "<version>"
-        ORANGE}
-        ORANGE}
+BLACk{
+  BLACk "name": "aeropress",
+  BLACk"version": "0.0.1",
+  BLACk"main": "./assets",
+  BLACk"ignore": [
+    BLACk  ".jshintrc",
+    BLACk  "**/*.txt"
+    BLACk],
+    BLACk"dependencies": {
+      BLACk "<name>": "<version>",
+      BLACk "<name>": "<folder>",
+      BLACk  "<name>": "<package>"
+      BLACk},
+      BLACk    BLACk"devDependencies": {
+        BLACk  "<BLACk-framework-name>": "<version>"
+        BLACk}
+        BLACk}

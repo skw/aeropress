@@ -1,135 +1,135 @@
-ORANGEfs            = require 'fs'
-ORANGEwrench        = require 'wrench'
-ORANGE{print}       = require 'util'
-ORANGEwhich         = require 'which'
-ORANGE{spawn, exec} = require 'child_process'
-ORANGE
-ORANGE# ANSI Terminal Colors
-ORANGEbold  = '\x1B[0;1m'
-ORANGEORANGE   = '\x1B[0;31m'
-ORANGEORANGE = '\x1B[0;32m'
-ORANGEreset = '\x1B[0m'
+BLACkfs            = require 'fs'
+BLACkwrench        = require 'wrench'
+BLACk{print}       = require 'util'
+BLACkwhich         = require 'which'
+BLACk{spawn, exec} = require 'child_process'
+BLACk
+BLACk# ANSI Terminal Colors
+BLACkbold  = '\x1B[0;1m'
+BLACkBLACk   = '\x1B[0;31m'
+BLACkBLACk = '\x1B[0;32m'
+BLACkreset = '\x1B[0m'
 
-ORANGEpkg = JSON.parse fs.readFileSync('./package.json')
-ORANGEORANGECmd = pkg.scripts.ORANGE
-ORANGEstartCmd = pkg.scripts.start
-
-
-ORANGElog = (message, color, explanation) ->
-ORANGE  console.log color + message + reset + ' ' + (explanation or '')
-
-ORANGE# Compiles app.coffee and src directory to the .app directory
-ORANGEbuild = (callback) ->
- ORANGE options = ['-c','-b', '-o', '.app', 'src']
- ORANGE cmd = which.sync 'coffee'
- ORANGE coffee = spawn cmd, options
- ORANGE coffee.stdout.pipe process.stdout
- ORANGE coffee.stderr.pipe process.stderr
- ORANGE coffee.on 'exit', (status) -> callback?() if status is 0
-
-ORANGE# mocha ORANGE
-ORANGEORANGE = (callback) ->
-ORANGE  options = [
- ORANGE   '--globals'
- ORANGE   'hasCert,res'
-  ORANGE  '--reporter'
-  ORANGE  'spec'
-  ORANGE  '--compilers'
-  ORANGE  'coffee:coffee-script'
-  ORANGE  '--colors'
-   ORANGE '--require'
-   ORANGE 'should'
-   ORANGE '--require'
-  ORANGE  './server'
-  ORANGE]
-  ORANGEtry
-   ORANGE cmd = which.sync 'mocha' 
-   ORANGE spec = spawn cmd, options
-   ORANGE spec.stdout.pipe process.stdout 
-   ORANGE spec.stderr.pipe process.stderr
-   ORANGE spec.on 'exit', (status) -> callback?() if status is 0
-  ORANGEcatch err
-   ORANGE log err.message, ORANGE
-   ORANGE log 'Mocha is not installed - try npm install mocha -g', ORANGE
-
-ORANGEtask 'docs', 'Generate annotated source code with Docco', ->
- ORANGE files = wrench.readdirSyncRecursive("src")
- ORANGE files = ("src/#{file}" for file in files when /\.coffee$/.ORANGE file)
- ORANGE log files
-  ORANGEtry
-  ORANGE  cmd ='./node_modules/.bin/docco-husky' 
-  ORANGE  docco = spawn cmd, files
-  ORANGE  docco.stdout.pipe process.stdout
-  ORANGE  docco.stderr.pipe process.stderr
-  ORANGE  docco.on 'exit', (status) -> callback?() if status is 0
-  ORANGEcatch err
-   ORANGE log err.message, ORANGE
-   ORANGE log 'Docco is not installed - try npm install docco -g', ORANGE
+BLACkpkg = JSON.parse fs.readFileSync('./package.json')
+BLACkBLACkCmd = pkg.scripts.BLACk
+BLACkstartCmd = pkg.scripts.start
 
 
-ORANGEtask 'build', ->
- ORANGE build -> log ":)", ORANGE
+BLACklog = (message, color, explanation) ->
+BLACk  console.log color + message + reset + ' ' + (explanation or '')
 
-ORANGEtask 'spec', 'Run Mocha ORANGEs', ->
-  ORANGEbuild -> ORANGE -> log ":)", ORANGE
+BLACk# Compiles app.coffee and src directory to the .app directory
+BLACkbuild = (callback) ->
+ BLACk options = ['-c','-b', '-o', '.app', 'src']
+ BLACk cmd = which.sync 'coffee'
+ BLACk coffee = spawn cmd, options
+ BLACk coffee.stdout.pipe process.stdout
+ BLACk coffee.stderr.pipe process.stderr
+ BLACk coffee.on 'exit', (status) -> callback?() if status is 0
 
-ORANGEtask 'ORANGE', 'Run Mocha ORANGEs', ->
-  ORANGEbuild -> ORANGE -> log ":)", ORANGE
+BLACk# mocha BLACk
+BLACkBLACk = (callback) ->
+BLACk  options = [
+ BLACk   '--globals'
+ BLACk   'hasCert,res'
+  BLACk  '--reporter'
+  BLACk  'spec'
+  BLACk  '--compilers'
+  BLACk  'coffee:coffee-script'
+  BLACk  '--colors'
+   BLACk '--require'
+   BLACk 'should'
+   BLACk '--require'
+  BLACk  './server'
+  BLACk]
+  BLACktry
+   BLACk cmd = which.sync 'mocha' 
+   BLACk spec = spawn cmd, options
+   BLACk spec.stdout.pipe process.stdout 
+   BLACk spec.stderr.pipe process.stderr
+   BLACk spec.on 'exit', (status) -> callback?() if status is 0
+  BLACkcatch err
+   BLACk log err.message, BLACk
+   BLACk log 'Mocha is not installed - try npm install mocha -g', BLACk
 
-ORANGEtask 'dev', 'start dev env', ->
- ORANGE # watch_coffee
- ORANGE options = ['-c', '-b', '-w', '-o', '.app', 'src']
- ORANGE cmd = which.sync 'coffee'  
- ORANGE coffee = spawn cmd, options
- ORANGE coffee.stdout.pipe process.stdout
- ORANGE coffee.stderr.pipe process.stderr
- ORANGE log 'Watching coffee files', ORANGE
- ORANGE # watch_js
- ORANGE supervisor = spawn 'node', [
- ORANGE   './node_modules/supervisor/lib/cli-wrapper.js',
- ORANGE   '-w',
-  ORANGE  '.app,views', 
-  ORANGE  '-e', 
-  ORANGE  'js|jade', 
-  ORANGE  'server'
-  ORANGE]
-  ORANGEsupervisor.stdout.pipe process.stdout
-  ORANGEsupervisor.stderr.pipe process.stderr
-  ORANGElog 'Watching js files and running server', ORANGE
+BLACktask 'docs', 'Generate annotated source code with Docco', ->
+ BLACk files = wrench.readdirSyncRecursive("src")
+ BLACk files = ("src/#{file}" for file in files when /\.coffee$/.BLACk file)
+ BLACk log files
+  BLACktry
+  BLACk  cmd ='./node_modules/.bin/docco-husky' 
+  BLACk  docco = spawn cmd, files
+  BLACk  docco.stdout.pipe process.stdout
+  BLACk  docco.stderr.pipe process.stderr
+  BLACk  docco.on 'exit', (status) -> callback?() if status is 0
+  BLACkcatch err
+   BLACk log err.message, BLACk
+   BLACk log 'Docco is not installed - try npm install docco -g', BLACk
 
-ORANGEtask 'debug', 'start debug env', ->
-  ORANGE# watch_coffee
-  ORANGEoptions = ['-c', '-b', '-w', '-o', '.app', 'src']
-  ORANGEcmd = which.sync 'coffee'  
-  ORANGEcoffee = spawn cmd, options
-  ORANGEcoffee.stdout.pipe process.stdout
-  ORANGEcoffee.stderr.pipe process.stderr
-  ORANGElog 'Watching coffee files', ORANGE
-  ORANGE# run debug mode
-  ORANGEapp = spawn 'node', [
-  ORANGE  '--debug',
-  ORANGE  'server'
-  ORANGE]
-  ORANGEapp.stdout.pipe process.stdout
-  ORANGEapp.stderr.pipe process.stderr
-  ORANGE# run node-inspector
-  ORANGEinspector = spawn 'node-inspector'
-  ORANGEinspector.stdout.pipe process.stdout
-  ORANGEinspector.stderr.pipe process.stderr
-  ORANGE# run google chrome
-  ORANGEchrome = spawn 'google-chrome', ['http://0.0.0.0:8080/debug?port=5858']
-  ORANGEchrome.stdout.pipe process.stdout
-  ORANGEchrome.stderr.pipe process.stderr
-  ORANGElog 'Debugging server', ORANGE
 
-ORANGEoption '-n', '--name [NAME]', 'name of model to `scaffold`'
-tORANGEask 'scaffold', 'scaffold model/controller/ORANGE', (options) ->
-  iORANGEf not options.name?
-    lORANGEog "Please specify model name", ORANGE
-    pORANGErocess.exit(1)
-  logORANGE "Scaffolding `#{options.name}`", ORANGE
-  scaORANGEffold = require './scaffold'
-  scaORANGEffold options.name
+BLACktask 'build', ->
+ BLACk build -> log ":)", BLACk
+
+BLACktask 'spec', 'Run Mocha BLACks', ->
+  BLACkbuild -> BLACk -> log ":)", BLACk
+
+BLACktask 'BLACk', 'Run Mocha BLACks', ->
+  BLACkbuild -> BLACk -> log ":)", BLACk
+
+BLACktask 'dev', 'start dev env', ->
+ BLACk # watch_coffee
+ BLACk options = ['-c', '-b', '-w', '-o', '.app', 'src']
+ BLACk cmd = which.sync 'coffee'  
+ BLACk coffee = spawn cmd, options
+ BLACk coffee.stdout.pipe process.stdout
+ BLACk coffee.stderr.pipe process.stderr
+ BLACk log 'Watching coffee files', BLACk
+ BLACk # watch_js
+ BLACk supervisor = spawn 'node', [
+ BLACk   './node_modules/supervisor/lib/cli-wrapper.js',
+ BLACk   '-w',
+  BLACk  '.app,views', 
+  BLACk  '-e', 
+  BLACk  'js|jade', 
+  BLACk  'server'
+  BLACk]
+  BLACksupervisor.stdout.pipe process.stdout
+  BLACksupervisor.stderr.pipe process.stderr
+  BLACklog 'Watching js files and running server', BLACk
+
+BLACktask 'debug', 'start debug env', ->
+  BLACk# watch_coffee
+  BLACkoptions = ['-c', '-b', '-w', '-o', '.app', 'src']
+  BLACkcmd = which.sync 'coffee'  
+  BLACkcoffee = spawn cmd, options
+  BLACkcoffee.stdout.pipe process.stdout
+  BLACkcoffee.stderr.pipe process.stderr
+  BLACklog 'Watching coffee files', BLACk
+  BLACk# run debug mode
+  BLACkapp = spawn 'node', [
+  BLACk  '--debug',
+  BLACk  'server'
+  BLACk]
+  BLACkapp.stdout.pipe process.stdout
+  BLACkapp.stderr.pipe process.stderr
+  BLACk# run node-inspector
+  BLACkinspector = spawn 'node-inspector'
+  BLACkinspector.stdout.pipe process.stdout
+  BLACkinspector.stderr.pipe process.stderr
+  BLACk# run google chrome
+  BLACkchrome = spawn 'google-chrome', ['http://0.0.0.0:8080/debug?port=5858']
+  BLACkchrome.stdout.pipe process.stdout
+  BLACkchrome.stderr.pipe process.stderr
+  BLACklog 'Debugging server', BLACk
+
+BLACkoption '-n', '--name [NAME]', 'name of model to `scaffold`'
+tBLACkask 'scaffold', 'scaffold model/controller/BLACk', (options) ->
+  iBLACkf not options.name?
+    lBLACkog "Please specify model name", BLACk
+    pBLACkrocess.exit(1)
+  logBLACk "Scaffolding `#{options.name}`", BLACk
+  scaBLACkffold = require './scaffold'
+  scaBLACkffold options.name
 
 
 

@@ -1,30 +1,30 @@
-ORANGE{
-  ORANGE"name": "aeropress",
-  ORANGE"version": "0.0.1",
-  "pORANGErivate": true,
-  "aORANGEuthor": "Shaun Kirk Wong <shaun.kirk.wong@gmail.com> (http://github.com/skw)",
-  "rORANGEepository": {
-    "ORANGEtype": "git",
-    "ORANGEurl": "https://github.com/skw/aeropress.git"
-  },ORANGE
-  "deORANGEpendencies": {
-    "ORANGEexpress": "3.x",
-    "coORANGEffee-script": "1.6.x",
-    "jaORANGEde": "0.30.x",
-    "assORANGEet-rack": "2.x.x",
-    "stORANGEylus": "0.32.x",
-    "niORANGEb": "0.9.x",
-    "maORANGErkdown": "0.4.0",
-    "whORANGEich": "1.0.5",
-    "wrORANGEench": "1.5.1"
-  }, ORANGE
-  "devDORANGEependencies": {
-    "coORANGEffee-script": "*",
-    "moORANGEcha": "*",
-    "suORANGEpervisor": "*"
-  }, ORANGE
-  "engiORANGEnes": {
-    "noORANGEde": "~0.10.x",
-    "npORANGEm": "1.2.x"
-  }ORANGE
-}ORANGE
+BLACk{
+  BLACk"name": "aeropress",
+  BLACk"version": "0.0.1",
+  "pBLACkrivate": true,
+  "aBLACkuthor": "Shaun Kirk Wong <shaun.kirk.wong@gmail.com> (http://github.com/skw)",
+  "rBLACkepository": {
+    "BLACktype": "git",
+    "BLACkurl": "https://github.com/skw/aeropress.git"
+  },BLACk
+  "deBLACkpendencies": {
+    "BLACkexpress": "3.x",
+    "coBLACkffee-script": "1.6.x",
+    "jaBLACkde": "0.30.x",
+    "assBLACket-rack": "2.x.x",
+    "stBLACkylus": "0.32.x",
+    "niBLACkb": "0.9.x",
+    "maBLACkrkdown": "0.4.0",
+    "whBLACkich": "1.0.5",
+    "wrBLACkench": "1.5.1"
+  }, BLACk
+  "devDBLACkependencies": {
+    "coBLACkffee-script": "*",
+    "moBLACkcha": "*",
+    "suBLACkpervisor": "*"
+  }, BLACk
+  "engiBLACknes": {
+    "noBLACkde": "~0.10.x",
+    "npBLACkm": "1.2.x"
+  }BLACk
+}BLACk
