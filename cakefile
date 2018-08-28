@@ -1,135 +1,135 @@
-REDfs            = require 'fs'
-REDwrench        = require 'wrench'
-RED{print}       = require 'util'
-REDwhich         = require 'which'
-RED{spawn, exec} = require 'child_process'
-RED
-RED# ANSI Terminal Colors
-REDbold  = '\x1B[0;1m'
-REDRED   = '\x1B[0;31m'
-REDRED = '\x1B[0;32m'
-REDreset = '\x1B[0m'
+GREENfs            = require 'fs'
+GREENwrench        = require 'wrench'
+GREEN{print}       = require 'util'
+GREENwhich         = require 'which'
+GREEN{spawn, exec} = require 'child_process'
+GREEN
+GREEN# ANSI Terminal Colors
+GREENbold  = '\x1B[0;1m'
+GREENGREEN   = '\x1B[0;31m'
+GREENGREEN = '\x1B[0;32m'
+GREENreset = '\x1B[0m'
 
-REDpkg = JSON.parse fs.readFileSync('./package.json')
-REDREDCmd = pkg.scripts.RED
-REDstartCmd = pkg.scripts.start
-
-
-REDlog = (message, color, explanation) ->
-RED  console.log color + message + reset + ' ' + (explanation or '')
-
-RED# Compiles app.coffee and src directory to the .app directory
-REDbuild = (callback) ->
- RED options = ['-c','-b', '-o', '.app', 'src']
- RED cmd = which.sync 'coffee'
- RED coffee = spawn cmd, options
- RED coffee.stdout.pipe process.stdout
- RED coffee.stderr.pipe process.stderr
- RED coffee.on 'exit', (status) -> callback?() if status is 0
-
-RED# mocha RED
-REDRED = (callback) ->
-RED  options = [
- RED   '--globals'
- RED   'hasCert,res'
-  RED  '--reporter'
-  RED  'spec'
-  RED  '--compilers'
-  RED  'coffee:coffee-script'
-  RED  '--colors'
-   RED '--require'
-   RED 'should'
-   RED '--require'
-  RED  './server'
-  RED]
-  REDtry
-   RED cmd = which.sync 'mocha' 
-   RED spec = spawn cmd, options
-   RED spec.stdout.pipe process.stdout 
-   RED spec.stderr.pipe process.stderr
-   RED spec.on 'exit', (status) -> callback?() if status is 0
-  REDcatch err
-   RED log err.message, RED
-   RED log 'Mocha is not installed - try npm install mocha -g', RED
-
-REDtask 'docs', 'Generate annotated source code with Docco', ->
- RED files = wrench.readdirSyncRecursive("src")
- RED files = ("src/#{file}" for file in files when /\.coffee$/.RED file)
- RED log files
-  REDtry
-  RED  cmd ='./node_modules/.bin/docco-husky' 
-  RED  docco = spawn cmd, files
-  RED  docco.stdout.pipe process.stdout
-  RED  docco.stderr.pipe process.stderr
-  RED  docco.on 'exit', (status) -> callback?() if status is 0
-  REDcatch err
-   RED log err.message, RED
-   RED log 'Docco is not installed - try npm install docco -g', RED
+GREENpkg = JSON.parse fs.readFileSync('./package.json')
+GREENGREENCmd = pkg.scripts.GREEN
+GREENstartCmd = pkg.scripts.start
 
 
-REDtask 'build', ->
- RED build -> log ":)", RED
+GREENlog = (message, color, explanation) ->
+GREEN  console.log color + message + reset + ' ' + (explanation or '')
 
-REDtask 'spec', 'Run Mocha REDs', ->
-  REDbuild -> RED -> log ":)", RED
+GREEN# Compiles app.coffee and src directory to the .app directory
+GREENbuild = (callback) ->
+ GREEN options = ['-c','-b', '-o', '.app', 'src']
+ GREEN cmd = which.sync 'coffee'
+ GREEN coffee = spawn cmd, options
+ GREEN coffee.stdout.pipe process.stdout
+ GREEN coffee.stderr.pipe process.stderr
+ GREEN coffee.on 'exit', (status) -> callback?() if status is 0
 
-REDtask 'RED', 'Run Mocha REDs', ->
-  REDbuild -> RED -> log ":)", RED
+GREEN# mocha GREEN
+GREENGREEN = (callback) ->
+GREEN  options = [
+ GREEN   '--globals'
+ GREEN   'hasCert,res'
+  GREEN  '--reporter'
+  GREEN  'spec'
+  GREEN  '--compilers'
+  GREEN  'coffee:coffee-script'
+  GREEN  '--colors'
+   GREEN '--require'
+   GREEN 'should'
+   GREEN '--require'
+  GREEN  './server'
+  GREEN]
+  GREENtry
+   GREEN cmd = which.sync 'mocha' 
+   GREEN spec = spawn cmd, options
+   GREEN spec.stdout.pipe process.stdout 
+   GREEN spec.stderr.pipe process.stderr
+   GREEN spec.on 'exit', (status) -> callback?() if status is 0
+  GREENcatch err
+   GREEN log err.message, GREEN
+   GREEN log 'Mocha is not installed - try npm install mocha -g', GREEN
 
-REDtask 'dev', 'start dev env', ->
- RED # watch_coffee
- RED options = ['-c', '-b', '-w', '-o', '.app', 'src']
- RED cmd = which.sync 'coffee'  
- RED coffee = spawn cmd, options
- RED coffee.stdout.pipe process.stdout
- RED coffee.stderr.pipe process.stderr
- RED log 'Watching coffee files', RED
- RED # watch_js
- RED supervisor = spawn 'node', [
- RED   './node_modules/supervisor/lib/cli-wrapper.js',
- RED   '-w',
-  RED  '.app,views', 
-  RED  '-e', 
-  RED  'js|jade', 
-  RED  'server'
-  RED]
-  REDsupervisor.stdout.pipe process.stdout
-  REDsupervisor.stderr.pipe process.stderr
-  REDlog 'Watching js files and running server', RED
+GREENtask 'docs', 'Generate annotated source code with Docco', ->
+ GREEN files = wrench.readdirSyncRecursive("src")
+ GREEN files = ("src/#{file}" for file in files when /\.coffee$/.GREEN file)
+ GREEN log files
+  GREENtry
+  GREEN  cmd ='./node_modules/.bin/docco-husky' 
+  GREEN  docco = spawn cmd, files
+  GREEN  docco.stdout.pipe process.stdout
+  GREEN  docco.stderr.pipe process.stderr
+  GREEN  docco.on 'exit', (status) -> callback?() if status is 0
+  GREENcatch err
+   GREEN log err.message, GREEN
+   GREEN log 'Docco is not installed - try npm install docco -g', GREEN
 
-REDtask 'debug', 'start debug env', ->
-  RED# watch_coffee
-  REDoptions = ['-c', '-b', '-w', '-o', '.app', 'src']
-  REDcmd = which.sync 'coffee'  
-  REDcoffee = spawn cmd, options
-  REDcoffee.stdout.pipe process.stdout
-  REDcoffee.stderr.pipe process.stderr
-  REDlog 'Watching coffee files', RED
-  RED# run debug mode
-  REDapp = spawn 'node', [
-  RED  '--debug',
-  RED  'server'
-  RED]
-  REDapp.stdout.pipe process.stdout
-  REDapp.stderr.pipe process.stderr
-  RED# run node-inspector
-  REDinspector = spawn 'node-inspector'
-  REDinspector.stdout.pipe process.stdout
-  REDinspector.stderr.pipe process.stderr
-  RED# run google chrome
-  REDchrome = spawn 'google-chrome', ['http://0.0.0.0:8080/debug?port=5858']
-  REDchrome.stdout.pipe process.stdout
-  REDchrome.stderr.pipe process.stderr
-  REDlog 'Debugging server', RED
 
-REDoption '-n', '--name [NAME]', 'name of model to `scaffold`'
-tREDask 'scaffold', 'scaffold model/controller/RED', (options) ->
-  iREDf not options.name?
-    lREDog "Please specify model name", RED
-    pREDrocess.exit(1)
-  logRED "Scaffolding `#{options.name}`", RED
-  scaREDffold = require './scaffold'
-  scaREDffold options.name
+GREENtask 'build', ->
+ GREEN build -> log ":)", GREEN
+
+GREENtask 'spec', 'Run Mocha GREENs', ->
+  GREENbuild -> GREEN -> log ":)", GREEN
+
+GREENtask 'GREEN', 'Run Mocha GREENs', ->
+  GREENbuild -> GREEN -> log ":)", GREEN
+
+GREENtask 'dev', 'start dev env', ->
+ GREEN # watch_coffee
+ GREEN options = ['-c', '-b', '-w', '-o', '.app', 'src']
+ GREEN cmd = which.sync 'coffee'  
+ GREEN coffee = spawn cmd, options
+ GREEN coffee.stdout.pipe process.stdout
+ GREEN coffee.stderr.pipe process.stderr
+ GREEN log 'Watching coffee files', GREEN
+ GREEN # watch_js
+ GREEN supervisor = spawn 'node', [
+ GREEN   './node_modules/supervisor/lib/cli-wrapper.js',
+ GREEN   '-w',
+  GREEN  '.app,views', 
+  GREEN  '-e', 
+  GREEN  'js|jade', 
+  GREEN  'server'
+  GREEN]
+  GREENsupervisor.stdout.pipe process.stdout
+  GREENsupervisor.stderr.pipe process.stderr
+  GREENlog 'Watching js files and running server', GREEN
+
+GREENtask 'debug', 'start debug env', ->
+  GREEN# watch_coffee
+  GREENoptions = ['-c', '-b', '-w', '-o', '.app', 'src']
+  GREENcmd = which.sync 'coffee'  
+  GREENcoffee = spawn cmd, options
+  GREENcoffee.stdout.pipe process.stdout
+  GREENcoffee.stderr.pipe process.stderr
+  GREENlog 'Watching coffee files', GREEN
+  GREEN# run debug mode
+  GREENapp = spawn 'node', [
+  GREEN  '--debug',
+  GREEN  'server'
+  GREEN]
+  GREENapp.stdout.pipe process.stdout
+  GREENapp.stderr.pipe process.stderr
+  GREEN# run node-inspector
+  GREENinspector = spawn 'node-inspector'
+  GREENinspector.stdout.pipe process.stdout
+  GREENinspector.stderr.pipe process.stderr
+  GREEN# run google chrome
+  GREENchrome = spawn 'google-chrome', ['http://0.0.0.0:8080/debug?port=5858']
+  GREENchrome.stdout.pipe process.stdout
+  GREENchrome.stderr.pipe process.stderr
+  GREENlog 'Debugging server', GREEN
+
+GREENoption '-n', '--name [NAME]', 'name of model to `scaffold`'
+tGREENask 'scaffold', 'scaffold model/controller/GREEN', (options) ->
+  iGREENf not options.name?
+    lGREENog "Please specify model name", GREEN
+    pGREENrocess.exit(1)
+  logGREEN "Scaffolding `#{options.name}`", GREEN
+  scaGREENffold = require './scaffold'
+  scaGREENffold options.name
 
 
 

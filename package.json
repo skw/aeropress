@@ -1,30 +1,30 @@
-RED{
-  RED"name": "aeropress",
-  RED"version": "0.0.1",
-  "pREDrivate": true,
-  "aREDuthor": "Shaun Kirk Wong <shaun.kirk.wong@gmail.com> (http://github.com/skw)",
-  "rREDepository": {
-    "REDtype": "git",
-    "REDurl": "https://github.com/skw/aeropress.git"
-  },RED
-  "deREDpendencies": {
-    "REDexpress": "3.x",
-    "coREDffee-script": "1.6.x",
-    "jaREDde": "0.30.x",
-    "assREDet-rack": "2.x.x",
-    "stREDylus": "0.32.x",
-    "niREDb": "0.9.x",
-    "maREDrkdown": "0.4.0",
-    "whREDich": "1.0.5",
-    "wrREDench": "1.5.1"
-  }, RED
-  "devDREDependencies": {
-    "coREDffee-script": "*",
-    "moREDcha": "*",
-    "suREDpervisor": "*"
-  }, RED
-  "engiREDnes": {
-    "noREDde": "~0.10.x",
-    "npREDm": "1.2.x"
-  }RED
-}RED
+GREEN{
+  GREEN"name": "aeropress",
+  GREEN"version": "0.0.1",
+  "pGREENrivate": true,
+  "aGREENuthor": "Shaun Kirk Wong <shaun.kirk.wong@gmail.com> (http://github.com/skw)",
+  "rGREENepository": {
+    "GREENtype": "git",
+    "GREENurl": "https://github.com/skw/aeropress.git"
+  },GREEN
+  "deGREENpendencies": {
+    "GREENexpress": "3.x",
+    "coGREENffee-script": "1.6.x",
+    "jaGREENde": "0.30.x",
+    "assGREENet-rack": "2.x.x",
+    "stGREENylus": "0.32.x",
+    "niGREENb": "0.9.x",
+    "maGREENrkdown": "0.4.0",
+    "whGREENich": "1.0.5",
+    "wrGREENench": "1.5.1"
+  }, GREEN
+  "devDGREENependencies": {
+    "coGREENffee-script": "*",
+    "moGREENcha": "*",
+    "suGREENpervisor": "*"
+  }, GREEN
+  "engiGREENnes": {
+    "noGREENde": "~0.10.x",
+    "npGREENm": "1.2.x"
+  }GREEN
+}GREEN

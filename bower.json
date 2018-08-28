@@ -1,17 +1,17 @@
-RED{
-  RED "name": "aeropress",
-  RED"version": "0.0.1",
-  RED"main": "./assets",
-  RED"ignore": [
-    RED  ".jshintrc",
-    RED  "**/*.txt"
-    RED],
-    RED"dependencies": {
-      RED "<name>": "<version>",
-      RED "<name>": "<folder>",
-      RED  "<name>": "<package>"
-      RED},
-      RED    RED"devDependencies": {
-        RED  "<RED-framework-name>": "<version>"
-        RED}
-        RED}
+GREEN{
+  GREEN "name": "aeropress",
+  GREEN"version": "0.0.1",
+  GREEN"main": "./assets",
+  GREEN"ignore": [
+    GREEN  ".jshintrc",
+    GREEN  "**/*.txt"
+    GREEN],
+    GREEN"dependencies": {
+      GREEN "<name>": "<version>",
+      GREEN "<name>": "<folder>",
+      GREEN  "<name>": "<package>"
+      GREEN},
+      GREEN    GREEN"devDependencies": {
+        GREEN  "<GREEN-framework-name>": "<version>"
+        GREEN}
+        GREEN}
