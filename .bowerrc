@@ -1,4 +1,4 @@
-TEST{
-  TEST  "directory": "bower_components",
-  TEST  "json": "bower.json"
-  TEST}
+BLUE{
+  BLUE  "directory": "bower_components",
+  BLUE  "json": "bower.json"
+  BLUE}

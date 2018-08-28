@@ -1,135 +1,135 @@
-TESTfs            = require 'fs'
-TESTwrench        = require 'wrench'
-TEST{print}       = require 'util'
-TESTwhich         = require 'which'
-TEST{spawn, exec} = require 'child_process'
-TEST
-TEST# ANSI Terminal Colors
-TESTbold  = '\x1B[0;1m'
-TESTGREEN   = '\x1B[0;31m'
-TESTgreen = '\x1B[0;32m'
-TESTreset = '\x1B[0m'
+BLUEfs            = require 'fs'
+BLUEwrench        = require 'wrench'
+BLUE{print}       = require 'util'
+BLUEwhich         = require 'which'
+BLUE{spawn, exec} = require 'child_process'
+BLUE
+BLUE# ANSI Terminal Colors
+BLUEbold  = '\x1B[0;1m'
+BLUEBLUE   = '\x1B[0;31m'
+BLUEBLUE = '\x1B[0;32m'
+BLUEreset = '\x1B[0m'
 
-TESTpkg = JSON.parse fs.readFileSync('./package.json')
-TESTtestCmd = pkg.scripts.test
-TESTstartCmd = pkg.scripts.start
-
-
-TESTlog = (message, color, explanation) ->
-TEST  console.log color + message + reset + ' ' + (explanation or '')
-
-TEST# Compiles app.coffee and src directory to the .app directory
-TESTbuild = (callback) ->
- TEST options = ['-c','-b', '-o', '.app', 'src']
- TEST cmd = which.sync 'coffee'
- TEST coffee = spawn cmd, options
- TEST coffee.stdout.pipe process.stdout
- TEST coffee.stderr.pipe process.stderr
- TEST coffee.on 'exit', (status) -> callback?() if status is 0
-
-TEST# mocha test
-TESTtest = (callback) ->
-TEST  options = [
- TEST   '--globals'
- TEST   'hasCert,res'
-  TEST  '--reporter'
-  TEST  'spec'
-  TEST  '--compilers'
-  TEST  'coffee:coffee-script'
-  TEST  '--colors'
-   TEST '--require'
-   TEST 'should'
-   TEST '--require'
-  TEST  './server'
-  TEST]
-  TESTtry
-   TEST cmd = which.sync 'mocha' 
-   TEST spec = spawn cmd, options
-   TEST spec.stdout.pipe process.stdout 
-   TEST spec.stderr.pipe process.stderr
-   TEST spec.on 'exit', (status) -> callback?() if status is 0
-  TESTcatch err
-   TEST log err.message, GREEN
-   TEST log 'Mocha is not installed - try npm install mocha -g', GREEN
-
-TESTtask 'docs', 'Generate annotated source code with Docco', ->
- TEST files = wrench.readdirSyncRecursive("src")
- TEST files = ("src/#{file}" for file in files when /\.coffee$/.test file)
- TEST log files
-  TESTtry
-  TEST  cmd ='./node_modules/.bin/docco-husky' 
-  TEST  docco = spawn cmd, files
-  TEST  docco.stdout.pipe process.stdout
-  TEST  docco.stderr.pipe process.stderr
-  TEST  docco.on 'exit', (status) -> callback?() if status is 0
-  TESTcatch err
-   TEST log err.message, GREEN
-   TEST log 'Docco is not installed - try npm install docco -g', GREEN
+BLUEpkg = JSON.parse fs.readFileSync('./package.json')
+BLUEBLUECmd = pkg.scripts.BLUE
+BLUEstartCmd = pkg.scripts.start
 
 
-TESTtask 'build', ->
- TEST build -> log ":)", green
+BLUElog = (message, color, explanation) ->
+BLUE  console.log color + message + reset + ' ' + (explanation or '')
 
-TESTtask 'spec', 'Run Mocha tests', ->
-  TESTbuild -> test -> log ":)", green
+BLUE# Compiles app.coffee and src directory to the .app directory
+BLUEbuild = (callback) ->
+ BLUE options = ['-c','-b', '-o', '.app', 'src']
+ BLUE cmd = which.sync 'coffee'
+ BLUE coffee = spawn cmd, options
+ BLUE coffee.stdout.pipe process.stdout
+ BLUE coffee.stderr.pipe process.stderr
+ BLUE coffee.on 'exit', (status) -> callback?() if status is 0
 
-TESTtask 'test', 'Run Mocha tests', ->
-  TESTbuild -> test -> log ":)", green
+BLUE# mocha BLUE
+BLUEBLUE = (callback) ->
+BLUE  options = [
+ BLUE   '--globals'
+ BLUE   'hasCert,res'
+  BLUE  '--reporter'
+  BLUE  'spec'
+  BLUE  '--compilers'
+  BLUE  'coffee:coffee-script'
+  BLUE  '--colors'
+   BLUE '--require'
+   BLUE 'should'
+   BLUE '--require'
+  BLUE  './server'
+  BLUE]
+  BLUEtry
+   BLUE cmd = which.sync 'mocha' 
+   BLUE spec = spawn cmd, options
+   BLUE spec.stdout.pipe process.stdout 
+   BLUE spec.stderr.pipe process.stderr
+   BLUE spec.on 'exit', (status) -> callback?() if status is 0
+  BLUEcatch err
+   BLUE log err.message, BLUE
+   BLUE log 'Mocha is not installed - try npm install mocha -g', BLUE
 
-TESTtask 'dev', 'start dev env', ->
- TEST # watch_coffee
- TEST options = ['-c', '-b', '-w', '-o', '.app', 'src']
- TEST cmd = which.sync 'coffee'  
- TEST coffee = spawn cmd, options
- TEST coffee.stdout.pipe process.stdout
- TEST coffee.stderr.pipe process.stderr
- TEST log 'Watching coffee files', green
- TEST # watch_js
- TEST supervisor = spawn 'node', [
- TEST   './node_modules/supervisor/lib/cli-wrapper.js',
- TEST   '-w',
-  TEST  '.app,views', 
-  TEST  '-e', 
-  TEST  'js|jade', 
-  TEST  'server'
-  TEST]
-  TESTsupervisor.stdout.pipe process.stdout
-  TESTsupervisor.stderr.pipe process.stderr
-  TESTlog 'Watching js files and running server', green
+BLUEtask 'docs', 'Generate annotated source code with Docco', ->
+ BLUE files = wrench.readdirSyncRecursive("src")
+ BLUE files = ("src/#{file}" for file in files when /\.coffee$/.BLUE file)
+ BLUE log files
+  BLUEtry
+  BLUE  cmd ='./node_modules/.bin/docco-husky' 
+  BLUE  docco = spawn cmd, files
+  BLUE  docco.stdout.pipe process.stdout
+  BLUE  docco.stderr.pipe process.stderr
+  BLUE  docco.on 'exit', (status) -> callback?() if status is 0
+  BLUEcatch err
+   BLUE log err.message, BLUE
+   BLUE log 'Docco is not installed - try npm install docco -g', BLUE
 
-TESTtask 'debug', 'start debug env', ->
-  TEST# watch_coffee
-  TESToptions = ['-c', '-b', '-w', '-o', '.app', 'src']
-  TESTcmd = which.sync 'coffee'  
-  TESTcoffee = spawn cmd, options
-  TESTcoffee.stdout.pipe process.stdout
-  TESTcoffee.stderr.pipe process.stderr
-  TESTlog 'Watching coffee files', green
-  TEST# run debug mode
-  TESTapp = spawn 'node', [
-  TEST  '--debug',
-  TEST  'server'
-  TEST]
-  TESTapp.stdout.pipe process.stdout
-  TESTapp.stderr.pipe process.stderr
-  TEST# run node-inspector
-  TESTinspector = spawn 'node-inspector'
-  TESTinspector.stdout.pipe process.stdout
-  TESTinspector.stderr.pipe process.stderr
-  TEST# run google chrome
-  TESTchrome = spawn 'google-chrome', ['http://0.0.0.0:8080/debug?port=5858']
-  TESTchrome.stdout.pipe process.stdout
-  TESTchrome.stderr.pipe process.stderr
-  TESTlog 'Debugging server', green
 
-TESToption '-n', '--name [NAME]', 'name of model to `scaffold`'
-tTESTask 'scaffold', 'scaffold model/controller/test', (options) ->
-  iTESTf not options.name?
-    lTESTog "Please specify model name", GREEN
-    pTESTrocess.exit(1)
-  logTEST "Scaffolding `#{options.name}`", green
-  scaTESTffold = require './scaffold'
-  scaTESTffold options.name
+BLUEtask 'build', ->
+ BLUE build -> log ":)", BLUE
+
+BLUEtask 'spec', 'Run Mocha BLUEs', ->
+  BLUEbuild -> BLUE -> log ":)", BLUE
+
+BLUEtask 'BLUE', 'Run Mocha BLUEs', ->
+  BLUEbuild -> BLUE -> log ":)", BLUE
+
+BLUEtask 'dev', 'start dev env', ->
+ BLUE # watch_coffee
+ BLUE options = ['-c', '-b', '-w', '-o', '.app', 'src']
+ BLUE cmd = which.sync 'coffee'  
+ BLUE coffee = spawn cmd, options
+ BLUE coffee.stdout.pipe process.stdout
+ BLUE coffee.stderr.pipe process.stderr
+ BLUE log 'Watching coffee files', BLUE
+ BLUE # watch_js
+ BLUE supervisor = spawn 'node', [
+ BLUE   './node_modules/supervisor/lib/cli-wrapper.js',
+ BLUE   '-w',
+  BLUE  '.app,views', 
+  BLUE  '-e', 
+  BLUE  'js|jade', 
+  BLUE  'server'
+  BLUE]
+  BLUEsupervisor.stdout.pipe process.stdout
+  BLUEsupervisor.stderr.pipe process.stderr
+  BLUElog 'Watching js files and running server', BLUE
+
+BLUEtask 'debug', 'start debug env', ->
+  BLUE# watch_coffee
+  BLUEoptions = ['-c', '-b', '-w', '-o', '.app', 'src']
+  BLUEcmd = which.sync 'coffee'  
+  BLUEcoffee = spawn cmd, options
+  BLUEcoffee.stdout.pipe process.stdout
+  BLUEcoffee.stderr.pipe process.stderr
+  BLUElog 'Watching coffee files', BLUE
+  BLUE# run debug mode
+  BLUEapp = spawn 'node', [
+  BLUE  '--debug',
+  BLUE  'server'
+  BLUE]
+  BLUEapp.stdout.pipe process.stdout
+  BLUEapp.stderr.pipe process.stderr
+  BLUE# run node-inspector
+  BLUEinspector = spawn 'node-inspector'
+  BLUEinspector.stdout.pipe process.stdout
+  BLUEinspector.stderr.pipe process.stderr
+  BLUE# run google chrome
+  BLUEchrome = spawn 'google-chrome', ['http://0.0.0.0:8080/debug?port=5858']
+  BLUEchrome.stdout.pipe process.stdout
+  BLUEchrome.stderr.pipe process.stderr
+  BLUElog 'Debugging server', BLUE
+
+BLUEoption '-n', '--name [NAME]', 'name of model to `scaffold`'
+tBLUEask 'scaffold', 'scaffold model/controller/BLUE', (options) ->
+  iBLUEf not options.name?
+    lBLUEog "Please specify model name", BLUE
+    pBLUErocess.exit(1)
+  logBLUE "Scaffolding `#{options.name}`", BLUE
+  scaBLUEffold = require './scaffold'
+  scaBLUEffold options.name
 
 
 

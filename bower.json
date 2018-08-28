@@ -1,17 +1,17 @@
-TEST{
-  TEST "name": "aeropress",
-  TEST"version": "0.0.1",
-  TEST"main": "./assets",
-  TEST"ignore": [
-    TEST  ".jshintrc",
-    TEST  "**/*.txt"
-    TEST],
-    TEST"dependencies": {
-      TEST "<name>": "<version>",
-      TEST "<name>": "<folder>",
-      TEST  "<name>": "<package>"
-      TEST},
-      TEST    TEST"devDependencies": {
-        TEST  "<test-framework-name>": "<version>"
-        TEST}
-        TEST}
+BLUE{
+  BLUE "name": "aeropress",
+  BLUE"version": "0.0.1",
+  BLUE"main": "./assets",
+  BLUE"ignore": [
+    BLUE  ".jshintrc",
+    BLUE  "**/*.txt"
+    BLUE],
+    BLUE"dependencies": {
+      BLUE "<name>": "<version>",
+      BLUE "<name>": "<folder>",
+      BLUE  "<name>": "<package>"
+      BLUE},
+      BLUE    BLUE"devDependencies": {
+        BLUE  "<BLUE-framework-name>": "<version>"
+        BLUE}
+        BLUE}

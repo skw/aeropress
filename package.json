@@ -1,30 +1,30 @@
-TEST{
-  TEST"name": "aeropress",
-  TEST"version": "0.0.1",
-  "pTESTrivate": true,
-  "aTESTuthor": "Shaun Kirk Wong <shaun.kirk.wong@gmail.com> (http://github.com/skw)",
-  "rTESTepository": {
-    "TESTtype": "git",
-    "TESTurl": "https://github.com/skw/aeropress.git"
-  },TEST
-  "deTESTpendencies": {
-    "TESTexpress": "3.x",
-    "coTESTffee-script": "1.6.x",
-    "jaTESTde": "0.30.x",
-    "assTESTet-rack": "2.x.x",
-    "stTESTylus": "0.32.x",
-    "niTESTb": "0.9.x",
-    "maTESTrkdown": "0.4.0",
-    "whTESTich": "1.0.5",
-    "wrTESTench": "1.5.1"
-  }, TEST
-  "devDTESTependencies": {
-    "coTESTffee-script": "*",
-    "moTESTcha": "*",
-    "suTESTpervisor": "*"
-  }, TEST
-  "engiTESTnes": {
-    "noTESTde": "~0.10.x",
-    "npTESTm": "1.2.x"
-  }TEST
-}TEST
+BLUE{
+  BLUE"name": "aeropress",
+  BLUE"version": "0.0.1",
+  "pBLUErivate": true,
+  "aBLUEuthor": "Shaun Kirk Wong <shaun.kirk.wong@gmail.com> (http://github.com/skw)",
+  "rBLUEepository": {
+    "BLUEtype": "git",
+    "BLUEurl": "https://github.com/skw/aeropress.git"
+  },BLUE
+  "deBLUEpendencies": {
+    "BLUEexpress": "3.x",
+    "coBLUEffee-script": "1.6.x",
+    "jaBLUEde": "0.30.x",
+    "assBLUEet-rack": "2.x.x",
+    "stBLUEylus": "0.32.x",
+    "niBLUEb": "0.9.x",
+    "maBLUErkdown": "0.4.0",
+    "whBLUEich": "1.0.5",
+    "wrBLUEench": "1.5.1"
+  }, BLUE
+  "devDBLUEependencies": {
+    "coBLUEffee-script": "*",
+    "moBLUEcha": "*",
+    "suBLUEpervisor": "*"
+  }, BLUE
+  "engiBLUEnes": {
+    "noBLUEde": "~0.10.x",
+    "npBLUEm": "1.2.x"
+  }BLUE
+}BLUE
