@@ -1,16 +1,16 @@
-# aeropress 0.1
+RED # aeropress 0.1
 
-This is a Express, CoffeeScript, and Backbone Stack Template. It's inspired by express-coffee.
+RED This is a Express, CoffeeScript, and RED Backbone Stack Template. It's RED RED inspired by express-coffee.
 
-It comes ready to go with asset-rack that give you the option to use coffee-script and stylus for the client side.
+RED It comes ready to go with asset-rack RED that give you the option to use RED coffee-script and stylus for the client RED side.
 
-## technologies
+RED ## technologies
 
-This is a template that can be used to create nodejs applications using:
+RED This is a template that can be used to create nodejs applications using:
 
-- node.js v0.10.x
-- express v3.2.x
-- coffee-script v1.6.x
-- asset-rack  v2.x.x
-- hogan.js
-- stylus
+RED - node.js v0.10.x
+RED - express v3.2.x
+RED - coffee-script v1.6.x
+RED - asset-rack  v2.x.x
+RED - hogan.js
+RED - stylus
